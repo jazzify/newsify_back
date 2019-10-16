@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "common.apps.CommonConfig",
+    "scrapper.apps.ScrapperConfig",
     "rest_framework",
 ]
 
