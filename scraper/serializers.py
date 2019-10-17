@@ -1,4 +1,4 @@
-from scrapper.models import Post
+from scraper.models import Post
 from rest_framework import serializers
 
 
