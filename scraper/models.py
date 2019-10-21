@@ -5,7 +5,6 @@ from common.models import BaseModel
 class Post(BaseModel):
 
     TYPE_CHOICES = (
-        ("CNN", "CNN"),
         ("ETP", "ELTIEMPO"),
         ("EPS", "ELPAIS"),
         ("NYT", "NYT"),
