@@ -29,12 +29,12 @@ class ScraperManager:
             if URL_ELTIEMPO in request.url:
                 base_url = "https://www.eltiempo.com/"
                 post = Post()
-                post.type = "ETP"
+                post.post_type = "ETP"
                 self._parse_eltiempo(request, post, base_url)
             elif URL_ELPAIS in request.url:
                 base_url = "https:"
                 post = Post()
-                post.type = "EPS"
+                post.post_type = "EPS"
                 self._parse_elpais(request, post, base_url)
             elif URL_NYTIMES in request.url:
                 # self._parse_nytimes(request, post, base_url)
