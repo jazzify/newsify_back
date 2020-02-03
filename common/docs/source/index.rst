@@ -3,9 +3,10 @@ Welcome to Newsify's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: index:
+   :caption: Index:
 
-   apps
+   scraper
+   common
 
 
 Indices and tables
