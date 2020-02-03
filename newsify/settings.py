@@ -51,7 +51,9 @@ ROOT_URLCONF = "newsify.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            "common/docs/templates"
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
