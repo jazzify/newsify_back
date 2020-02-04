@@ -7,7 +7,6 @@ class Post(BaseModel):
     TYPE_CHOICES = (
         ("ETP", "ELTIEMPO"),
         ("EPS", "ELPAIS"),
-        ("NYT", "NYT"),
         ("TWP", "TWP"),
     )
 
