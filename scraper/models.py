@@ -7,7 +7,6 @@ class Post(BaseModel):
     TYPE_CHOICES = (
         ("ETP", "ELTIEMPO"),
         ("EPS", "ELPAIS"),
-        ("NYT", "NYT"),
         ("TWP", "TWP"),
     )
 
@@ -18,4 +17,4 @@ class Post(BaseModel):
     cover_img_url = models.URLField(max_length=255, blank=True)
     original_post_url = models.URLField(max_length=512, unique=True)
     original_post_date = models.CharField(max_length=255)
-    type = models.CharField(max_length=3, choices=TYPE_CHOICES)
+    post_type = models.CharField(max_length=3, choices=TYPE_CHOICES)

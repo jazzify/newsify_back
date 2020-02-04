@@ -9,15 +9,15 @@ from scraper.services import ScraperManager
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all()[:10]
     serializer_class = PostSerializer
 
     @action(detail=False, methods=["get"])
     def scrape_websites(self, request):
         scraper_manager = ScraperManager()
-        scraper_manager.run_requests()
+        errors = scraper_manager.run_requests()
 
-        if True:
-            return Response({"status": "password set"})
+        if errors:
+            return Response({"errors": errors}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_200_OK)
