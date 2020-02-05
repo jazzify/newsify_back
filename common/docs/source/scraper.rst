@@ -44,4 +44,9 @@ TODO
 
 Scraper views 
 --------------------
-``PostViewSet`` will handle our ``posts`` methods logic, it haves all the methods inherited from ``ModelViewSet`` and also has ``scrape_websites`` which is gonna be used to scrape every post on the news platforms.
+``PostViewSet`` will handle our ``posts`` methods logic, it haves all the methods inherited from ``ModelViewSet``.
+
+
+Scraper commands
+--------------------
+``scrape`` command is gonna be used to scrape every post on the news platforms using the ``ScraperManager`` is gonna be used as a cronjob
