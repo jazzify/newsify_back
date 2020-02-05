@@ -11,9 +11,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         scraper_manager = ScraperManager()
-        errors = scraper_manager.run_requests()
+        try:
+            errors = scraper_manager.run_requests()
+        except Exception as error:
+            errors = error
 
-        if not settings.DEBUG and errors:
+        if errors:
             message = Mail(
                 from_email='support@newsify.com',
                 to_emails=os.environ.get('DEVELOPERS_SUPPORT_EMAIL'),
