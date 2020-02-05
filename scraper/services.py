@@ -125,7 +125,6 @@ class ScraperManager:
         post_img = post_soup.select_one("figure.foto > img")[
             "data-src"
         ]
-        print(post_img)
         post.cover_img_url = f"{base_url}{post_img}"
         # Author
         post.author = post_soup.select_one("span.autor-nombre > a").string
