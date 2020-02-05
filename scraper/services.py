@@ -6,11 +6,9 @@ from scraper.models import Post
 
 URL_ELTIEMPO = "https://www.eltiempo.com/mundo"
 URL_ELPAIS = "https://elpais.com/tag/c/15148420ba519668342b7a63149cad97"
-URL_TWP = "https://www.washingtonpost.com/"
+URL_TWP = "https://www.washingtonpost.com/world/"
 
-# WEBSITE_URLS = (URL_ELTIEMPO, URL_ELPAIS, URL_TWP)
-WEBSITE_URLS = (URL_ELPAIS, URL_ELTIEMPO)
-
+WEBSITE_URLS = (URL_ELTIEMPO, URL_ELPAIS, URL_TWP)
 
 class ScraperManager:
     def __init__(self):
@@ -50,7 +48,11 @@ class ScraperManager:
                     self.errors.append(errors)
 
             elif URL_TWP in request.url:
-                # self._parse_twp(request, post, base_url)
+                post = Post()
+                post_type = "TWP"
+                post.post_type = post_type
+
+                self._parse_twp(request, post, base_url)
                 pass
 
     def _parse_eltiempo(self, request, post, base_url):
@@ -137,14 +139,29 @@ class ScraperManager:
 
 
     def _parse_twp(self, request, post, base_url):
-        # # Title
-        # post.title = post_title
-        # # Subtitle
-        # post.subtitle = post_subtitle
-        # # Cover Img
-        # # Author
-        # post.author = post_author
-        # # Pub Date
-        # post.original_post_date = post_pub_date
-        pass
+        soup = BeautifulSoup(request.text, "html.parser")
+        post_anchor = soup.select_one("h1.headline > a")["href"]
 
+        # Original post url
+        post.original_post_url = post_anchor
+        # Redirect to principal post
+        principal_post = requests.get(post_anchor)
+        post_soup = BeautifulSoup(principal_post.text, "html.parser")
+
+        # Title
+        post.title = post_soup.select_one("h1").string
+        # Cover Img
+        post.cover_img_url = post_soup.select_one("article > figure > img")["src"]
+        # Author
+        post.author = " & ".join([author.string for author in post_soup.select("span.author-name")])
+        # Pub Date
+        post.original_post_date = post_soup.select_one("div.display-date").get_text()
+        # Body
+        post.body = post_soup.select_one("div.article-body").get_text()
+
+        try:
+            post.full_clean()
+            post.save()
+            return dict()
+        except ValidationError as error:
+            return dict(error)

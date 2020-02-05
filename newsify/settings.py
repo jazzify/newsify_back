@@ -13,7 +13,7 @@ SECRET_KEY = "awodnl8ju+qx*&n+iy*&pldq1#7xat_b1j0*68++q#%83ga5!@"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Django Debug Toolbar is shown only if your IP address is listed in INTERNAL_IPS
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#configuring-internal-ips
@@ -71,12 +71,14 @@ WSGI_APPLICATION = "newsify.wsgi.application"
 
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'localhost',
+        'PORT': 5432,
     }
 }
-
 
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
