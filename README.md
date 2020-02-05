@@ -19,7 +19,7 @@ What things you need to install the software and how to install them
     You must have [Python 3](https://www.python.org/downloads/) and [pip3](https://www.python.org/dev/peps/pep-0439/#the-pip-bootstrap) installed on your machine in order to run the project.
 
 - #### Database:
-    Newsify is using [SQLite](https://www.sqlite.org/index.html) by the moment, this doesn't require any configuration.
+    Newsify is using [PostgreSQL](https://www.postgresql.org/) on a [Docker](https://www.docker.com/) container with [docker-compose](https://docs.docker.com/compose/)
 
 - #### Virtual environment (Optional):
     I like to use [Conda](https://docs.conda.io/en/latest/) as a VE manager but you can also use [virtualenv](https://virtualenv.pypa.io/en/stable/installation/) or [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/index.html)
@@ -41,6 +41,11 @@ pip install -r requirements.txt
 Install the development dependencies (optional):
 ```
 pip install -r requirements-dev.txt
+```
+
+If you already have `docker` and `docker-compose` in your machine, just run the following command to get your database up and running:
+```
+docker-compose up -d
 ```
 
 Apply the basic migrations:
