@@ -34,3 +34,4 @@ wrapt==1.11.2
 psycopg2==2.8.4
 django-debug-toolbar==2.2
 django_heroku
+gunicorn
