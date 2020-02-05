@@ -59,9 +59,15 @@ class ScraperManager:
         soup = BeautifulSoup(request.text, "html.parser")
 
         # Cover image
-        cover_url = soup.select_one(
-            "figure.foto-seccion-home.image-container"
-        ).select_one("img")["data-original"]
+        try:
+            cover_url = soup.select_one(
+                "figure.foto-seccion-home.image-container"
+            ).select_one("img")["data-original"]
+        except AttributeError:
+            cover_url = soup.select_one(
+                "figure.foto-seccion-home-video.image-container"
+            ).select_one("img")["data-original"]
+
         post.cover_img_url = f"{base_url}{cover_url}"
 
         # Principal post anchor
@@ -116,9 +122,10 @@ class ScraperManager:
         # Subtitle
         post.subtitle = post_soup.select_one("h2.articulo-subtitulo").string
         # Cover Img
-        post_img = post_soup.select_one("#articulo_contenedor > figure > img")[
+        post_img = post_soup.select_one("figure.foto > img")[
             "data-src"
         ]
+        print(post_img)
         post.cover_img_url = f"{base_url}{post_img}"
         # Author
         post.author = post_soup.select_one("span.autor-nombre > a").string
