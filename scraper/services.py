@@ -157,7 +157,11 @@ class ScraperManager:
         # Title
         post.title = post_soup.select_one("h1").string
         # Cover Img
-        post.cover_img_url = post_soup.select_one("article > figure > img")["src"]
+        try:
+            post.cover_img_url = post_soup.select_one("article > figure > img")["src"]
+        except TypeError as error:
+            post.cover_img_url = ""
+            self.errors.append(dict(twp_image=error))
         # Author
         post.author = " & ".join([author.string for author in post_soup.select("span.author-name")])
         # Pub Date
