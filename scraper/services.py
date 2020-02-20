@@ -122,8 +122,12 @@ class ScraperManager:
         # Subtitle
         post.subtitle = post_soup.select_one("h2.articulo-subtitulo").string
         # Cover Img
-        post_img = post_soup.select_one("figure.foto > img")["data-src"]
-        post.cover_img_url = f"{base_url}{post_img}"
+        try:
+            post_img = post_soup.select_one("figure.foto > img")["data-src"]
+            post.cover_img_url = f"{base_url}{post_img}"
+        except TypeError:
+            # Some times the post has a video instead of an image
+            post.cover_img_url = ""
         # Author
         post.author = post_soup.select_one("span.autor-nombre > a").string
         # Pub Date
