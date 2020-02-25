@@ -10,7 +10,12 @@ class PostViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.Lis
     serializer_class = PostSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()[:10]
+        post_types = [post_type[0] for post_type in Post.TYPE_CHOICES]
+        posts = {post_type:[] for post_type in post_types}
 
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+        for post_type in post_types:
+            queryset = Post.objects.filter(post_type=post_type).order_by('-created_at')[:4]
+            serialized_posts = self.get_serializer(queryset, many=True).data
+            posts[post_type] = serialized_posts
+        
+        return Response(posts)
