@@ -4,10 +4,14 @@ from common.models import BaseModel
 
 class Post(BaseModel):
 
+    TYPE_ETP = "ETP"
+    TYPE_EPS = "EPS"
+    TYPE_TWP = "TWP"
+
     TYPE_CHOICES = (
-        ("ETP", "ELTIEMPO"),
-        ("EPS", "ELPAIS"),
-        ("TWP", "TWP"),
+        (TYPE_ETP, "ELTIEMPO"),
+        (TYPE_EPS, "ELPAIS"),
+        (TYPE_TWP, "TWP"),
     )
 
     title = models.CharField(max_length=255)
