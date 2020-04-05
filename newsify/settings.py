@@ -16,6 +16,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+# CORS Settings
+CORS_ORIGIN_ALLOW_ALL = True
+
 # Django Debug Toolbar is shown only if your IP address is listed in INTERNAL_IPS
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#configuring-internal-ips
 INTERNAL_IPS = [
@@ -34,9 +37,11 @@ INSTALLED_APPS = [
     "scraper.apps.ScraperConfig",
     "rest_framework",
     "debug_toolbar",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
