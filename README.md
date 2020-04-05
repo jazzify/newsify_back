@@ -1,6 +1,8 @@
-# Newsify Backend
+# Newsify Backend (Deprecated)
 
 Newsify Backend is an API that scrapes some of the most important news platforms such as [The Washington Post](https://www.washingtonpost.com/), [El Pais](https://elpais.com/) and [El Tiempo](https://www.eltiempo.com/) to get the most recent news.
+
+Try the API it on [Newsify Back](https://newsify-back.herokuapp.com/)
 
 ## Getting Started
 
@@ -75,6 +77,7 @@ TODO
 ### Docs at:
 https://newsify-back.readthedocs.io/en/latest/index.html
 
+https://newsify-back.herokuapp.com/api-docs/
 
 
 ## Authors
