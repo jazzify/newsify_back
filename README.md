@@ -76,6 +76,7 @@ TODO
 
 ### Docs at:
 https://newsify-back.readthedocs.io/en/latest/index.html
+
 https://newsify-back.herokuapp.com/api-docs/
 
 
